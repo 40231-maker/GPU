@@ -1,0 +1,25 @@
+{
+  "name": "gpu-radar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GPU RADAR — Monitor e comparador de preços de placas de vídeo no Brasil (Foco RTX 5070)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "gpu",
+    "rtx-5070",
+    "monitor-precos",
+    "kabum",
+    "pichau",
+    "hardware"
+  ],
+  "author": "GPU Radar Team",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "express": "^4.21.2"
+  }
+}

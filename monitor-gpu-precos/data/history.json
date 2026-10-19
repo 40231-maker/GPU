@@ -1,0 +1,60 @@
+{
+  "rtx5070-galax-1click-kabum": [
+    { "date": "2026-09-20", "price": 4799.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-09-25", "price": 4699.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-09-30", "price": 4649.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-05", "price": 4549.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-10", "price": 4499.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-14", "price": 4399.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-17", "price": 4249.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-19", "price": 4299.99, "inStock": true, "store": "KaBuM!" }
+  ],
+  "rtx5070-asus-tuf-pichau": [
+    { "date": "2026-09-20", "price": 5099.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-09-25", "price": 4999.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-09-30", "price": 4899.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-05", "price": 4750.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-10", "price": 4650.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-15", "price": 4550.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-18", "price": 4399.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-19", "price": 4449.90, "inStock": true, "store": "Pichau" }
+  ],
+  "rtx5070-gigabyte-windforce-kabum": [
+    { "date": "2026-09-20", "price": 4850.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-09-27", "price": 4790.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-03", "price": 4690.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-08", "price": 4599.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-12", "price": 4490.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-16", "price": 4350.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-19", "price": 4389.00, "inStock": true, "store": "KaBuM!" }
+  ],
+  "rtx5070-msi-ventus-pichau": [
+    { "date": "2026-09-20", "price": 4899.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-09-28", "price": 4850.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-05", "price": 4799.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-11", "price": 4699.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-16", "price": 4620.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-19", "price": 4599.90, "inStock": true, "store": "Pichau" }
+  ],
+  "rtx5070-zotac-twin-edge-kabum": [
+    { "date": "2026-09-20", "price": 4799.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-09-26", "price": 4690.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-02", "price": 4599.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-09", "price": 4480.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-15", "price": 4390.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-18", "price": 4290.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-19", "price": 4349.99, "inStock": true, "store": "KaBuM!" }
+  ],
+  "rtx4070-super-asus-dual-kabum": [
+    { "date": "2026-09-20", "price": 4499.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-01", "price": 4299.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-10", "price": 4150.00, "inStock": true, "store": "KaBuM!" },
+    { "date": "2026-10-19", "price": 3999.00, "inStock": true, "store": "KaBuM!" }
+  ],
+  "rx7800xt-sapphire-pulse-pichau": [
+    { "date": "2026-09-20", "price": 4199.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-01", "price": 3999.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-10", "price": 3849.00, "inStock": true, "store": "Pichau" },
+    { "date": "2026-10-19", "price": 3749.99, "inStock": true, "store": "Pichau" }
+  ]
+}

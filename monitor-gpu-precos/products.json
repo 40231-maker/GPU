@@ -1,0 +1,20 @@
+[
+  {
+    "id": "rtx5070-kabum",
+    "name": "RTX 5070 — KaBuM!",
+    "brand": "NVIDIA",
+    "model": "RTX 5070",
+    "store": "KaBuM!",
+    "url": "",
+    "active": true
+  },
+  {
+    "id": "rtx5070-pichau",
+    "name": "RTX 5070 — Pichau",
+    "brand": "NVIDIA",
+    "model": "RTX 5070",
+    "store": "Pichau",
+    "url": "",
+    "active": true
+  }
+]

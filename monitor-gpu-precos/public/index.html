@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="GPU RADAR — Monitor e comparador inteligente de preços de placas de vídeo no Brasil. Acompanhe a RTX 5070 na KaBuM! e Pichau com histórico gráfico e alertas.">
+  <title>GPU RADAR — Monitor de Preços de Placas de Vídeo (RTX 5070)</title>
+
+  <!-- Google Fonts: Outfit, Rajdhani & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Outfit:wght@400;500;600;700;800&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR SUPERIOR -->
+  <header class="top-navbar">
+    <div class="container nav-content">
+      <a href="/" class="brand-wrapper">
+        <!-- SVG Logotipo Original: Radar Reticle + GPU Die -->
+        <svg class="radar-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="46" stroke="#1c2738" stroke-width="2"/>
+          <circle cx="50" cy="50" r="32" stroke="#27374d" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="50" cy="50" r="16" stroke="rgba(0,245,160,0.5)" stroke-width="1.5"/>
+          <rect x="36" y="36" width="28" height="28" rx="4" fill="#121824" stroke="#00f5a0" stroke-width="2"/>
+          <path d="M50 14V36M50 64V86M14 50H36M64 50H86" stroke="#00d2ff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="50" cy="50" r="4" fill="#00f5a0"/>
+          <!-- Linha animada do radar -->
+          <line x1="50" y1="50" x2="80" y2="20" stroke="url(#radarGradient)" stroke-width="2.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="radarGradient" x1="50" y1="50" x2="80" y2="20" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00f5a0"/>
+              <stop offset="1" stop-color="#00d2ff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="brand-text">
+          <h1>GPU RADAR</h1>
+          <div class="brand-tagline">
+            <span class="live-indicator"></span>
+            Monitor de Hardware · Brasil
+          </div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <button id="btn-refresh-all" class="btn btn-primary" title="Consultar preços atuais nas lojas">
+          <span>↻</span> Atualizar Preços
+        </button>
+        <button class="btn btn-secondary" onclick="openAddModal()">
+          <span>+</span> Adicionar GPU
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+    
+    <!-- HERO SECTION & DASHBOARD DE INSIGHTS -->
+    <section class="hero-section">
+      <div class="hero-grid">
+        
+        <!-- CARD PRINCIPAL: DESTAQUE RTX 5070 -->
+        <div class="spotlight-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge-tag lime">Alvo Prioritário · RTX 5070</span>
+            <span class="badge-tag cyan">Limite: <strong id="target-price-display">R$ 4.500,00</strong></span>
+          </div>
+
+          <h2 class="spotlight-title">NVIDIA GeForce RTX 5070</h2>
+          <p id="hero-best-model" class="spotlight-subtitle">Consultando disponibilidade e cotações na KaBuM! e Pichau…</p>
+
+          <div class="spotlight-price-row">
+            <span id="hero-best-price" class="price-huge highlight">R$ 4.299,99</span>
+            <div id="hero-target-comparison" class="target-comparison-badge">
+              🔥 R$ 200,01 ABAIXO DA META
+            </div>
+          </div>
+
+          <!-- Termômetro de Alvo -->
+          <div class="target-thermometer">
+            <div class="thermo-header">
+              <span>Proximidade do Alvo de Compra</span>
+              <span>Excelente momento para compra</span>
+            </div>
+            <div class="thermo-bar-bg">
+              <div id="thermo-fill" class="thermo-bar-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAINEL DE ESTATÍSTICAS RÁPIDAS -->
+        <div class="stats-panel">
+          <div>
+            <div class="badge-tag amber" style="margin-bottom:14px;">Visão Geral do Mercado</div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-label">GPUs no Radar</div>
+                <div id="stat-total-gpus" class="stat-val cyan">7</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Ofertas &lt; R$ 4.500</div>
+                <div id="stat-deals-count" class="stat-val green">5</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Média RTX 5070</div>
+                <div id="stat-avg-price" class="stat-val">R$ 4.417</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Lojas Conectadas</div>
+                <div class="stat-val">2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="store-status-bar">
+            <span>Distribuição de Estoque:</span>
+            <div class="store-tags-row">
+              <span class="store-pill kabum">KaBuM! (<strong id="stat-kabum-count">4</strong>)</span>
+              <span class="store-pill pichau">Pichau (<strong id="stat-pichau-count">3</strong>)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BARRA DE FILTROS, BUSCA E ORDENAÇÃO -->
+    <section class="controls-section">
+      <div class="controls-wrapper">
+        
+        <!-- Campo de Busca -->
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="Buscar por modelo, marca (ex: Galax, Asus, TUF)…">
+        </div>
+
+        <!-- Filtros de Modelo -->
+        <div class="filter-pills">
+          <button class="pill-btn pill-filter active" data-filter="all">Todas</button>
+          <button class="pill-btn pill-filter" data-filter="5070">RTX 5070</button>
+          <button class="pill-btn pill-filter" data-filter="deals">Abaixo da Meta 🔥</button>
+          <button class="pill-btn pill-filter" data-filter="stock">Em Estoque</button>
+        </div>
+
+        <!-- Filtros de Loja -->
+        <div class="filter-pills">
+          <button class="pill-btn store-filter-pill active" data-store="all">Lojas: Todas</button>
+          <button class="pill-btn store-filter-pill" data-store="KaBuM!">KaBuM!</button>
+          <button class="pill-btn store-filter-pill" data-store="Pichau">Pichau</button>
+        </div>
+
+        <!-- Ordenação -->
+        <div>
+          <select id="sort-select" class="sort-select" title="Ordenar lista de placas">
+            <option value="price_asc">Menor Preço</option>
+            <option value="discount">Maior Desconto</option>
+            <option value="price_desc">Maior Preço</option>
+            <option value="name">Nome (A-Z)</option>
+          </select>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CABEÇALHO DA LISTAGEM -->
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h2>Placas de Vídeo Monitoradas</h2>
+      </div>
+      <div id="products-count-badge" class="section-counter">Carregando…</div>
+    </div>
+
+    <!-- GRID DE PRODUTOS -->
+    <div id="products-grid" class="product-grid">
+      <!-- Inserido dinamicamente por app.js -->
+    </div>
+
+    <!-- AVISO DE TRANSPARÊNCIA E METODOLOGIA -->
+    <div class="consumer-notice">
+      <strong>Transparência GPU RADAR:</strong> Os valores exibidos referem-se preferencialmente ao preço à vista (PIX/Boleto) obtido diretamente das páginas públicas de cada loja parceira. Preços, fretes e condições de parcelamento podem variar conforme a região e a política da loja no momento da compra. O GPU RADAR é uma plataforma independente de cotações para entusiastas de hardware.
+    </div>
+
+  </main>
+
+  <!-- MODAL: HISTÓRICO E GRÁFICO DE PREÇOS -->
+  <div id="history-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge-tag cyan" style="font-size:10px;">HISTÓRICO DE PREÇOS</span>
+          <h3 id="history-modal-title" style="margin-top:4px;">Nome da GPU</h3>
+        </div>
+        <button class="btn-close-modal" title="Fechar">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size:13px; color:var(--text-secondary);">
+          Acompanhamento da oscilação de preço nos últimos 30 dias com marcação do seu preço-alvo.
+        </p>
+
+        <!-- Canvas Gráfico Interativo -->
+        <div class="chart-container">
+          <canvas id="history-chart-canvas"></canvas>
+        </div>
+
+        <!-- Métricas Rápidas do Produto -->
+        <div class="chart-stats-grid">
+          <div class="chart-stat-card">
+            <div class="chart-stat-label">Menor Preço Registrado</div>
+            <div id="modal-stat-min" class="chart-stat-value" style="color:var(--accent-green);">—</div>
+          </div>
+          <div class="chart-stat-card">
+            <div class="chart-stat-label">Preço Médio</div>
+            <div id="modal-stat-avg" class="chart-stat-value">—</div>
+          </div>
+          <div class="chart-stat-card">
+            <div class="chart-stat-label">Maior Preço Registrado</div>
+            <div id="modal-stat-max" class="chart-stat-value" style="color:var(--text-muted);">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADICIONAR NOVA GPU -->
+  <div id="add-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge-tag lime" style="font-size:10px;">MONITORAMENTO PERSONALIZADO</span>
+          <h3 style="margin-top:4px;">Adicionar Placa de Vídeo</h3>
+        </div>
+        <button class="btn-close-modal" title="Fechar">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="add-gpu-form">
+          <div class="form-group">
+            <label class="form-label" for="new-gpu-name">Nome Completo do Modelo *</label>
+            <input type="text" id="new-gpu-name" class="form-input" placeholder="Ex: Placa de Vídeo RTX 5070 Galax 12GB" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div class="form-group">
+              <label class="form-label" for="new-gpu-store">Loja *</label>
+              <select id="new-gpu-store" class="form-select" required>
+                <option value="KaBuM!">KaBuM!</option>
+                <option value="Pichau">Pichau</option>
+                <option value="Terabyte">Terabyte</option>
+                <option value="Outra">Outra</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="new-gpu-target">Preço Alvo Desejado (R$)</label>
+              <input type="number" id="new-gpu-target" class="form-input" value="4500" step="50" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div class="form-group">
+              <label class="form-label" for="new-gpu-model">Série / Chipset</label>
+              <input type="text" id="new-gpu-model" class="form-input" value="RTX 5070">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="new-gpu-brand">Fabricante</label>
+              <input type="text" id="new-gpu-brand" class="form-input" placeholder="Ex: Galax, ASUS, MSI">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="new-gpu-url">Link Direto do Produto na Loja</label>
+            <div style="display:flex; gap:8px;">
+              <input type="url" id="new-gpu-url" class="form-input" placeholder="https://www.kabum.com.br/produto/..." style="flex:1;">
+              <button type="button" id="btn-test-url" class="btn btn-secondary">Testar Link</button>
+            </div>
+            <div id="url-test-feedback" class="form-hint">Cole o link completo da página do produto.</div>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+            <button type="button" class="btn btn-ghost" onclick="closeModals()">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar no Radar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER DE NOTIFICAÇÕES TOAST -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- RODAPÉ DO SITE -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <strong>GPU RADAR</strong> · Sistema de Monitoramento em Tempo Real para Hardware e Placas de Vídeo.
+      </div>
+      <div>
+        Foco RTX 5070 · KaBuM! &amp; Pichau · Pronto para Vercel &amp; Node.js
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
